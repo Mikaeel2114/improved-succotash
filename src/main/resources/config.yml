@@ -1,0 +1,5 @@
+# Mode used by plain "/bedfight" (1v1, 2v2 or 3v3)
+default-mode: 1v1
+# World whose spawn is used as lobby after a match (empty = first loaded world)
+lobby-world: ""
+# NOTE: countdown, respawn, sounds, spectator and message options live in settings.yml

@@ -1,0 +1,62 @@
+# ---------------------------------------------------------------------------
+# BedFight voices.yml - every sound the plugin plays  (reload with /bedfight reload)
+#
+# Format of each entry:  "SOUND_NAME:volume:pitch:delayTicks"
+#   volume, pitch and delay are optional (defaults 1.0 / 1.0 / 0). 20 ticks = 1 second.
+#   Use several entries to build a melody. An empty list [] turns that sound off.
+# Sound names are the Spigot 1.8.8 names, for example:
+#   NOTE_STICKS NOTE_PLING NOTE_BASS ORB_PICKUP LEVEL_UP SUCCESSFUL_HIT HURT_FLESH
+#   ENDERDRAGON_DEATH ENDERDRAGON_GROWL WITHER_SPAWN ANVIL_LAND CLICK CHEST_OPEN
+#   VILLAGER_NO VILLAGER_YES ENDERMAN_TELEPORT FIREWORK_LARGE_BLAST ITEM_PICKUP
+# Unknown names are skipped and a warning is printed in the console.
+# New sound keys added in plugin updates are merged into this file automatically.
+# ---------------------------------------------------------------------------
+
+# Master switch for ALL plugin sounds
+enabled: true
+# Multiplies the volume of every sound (0.5 = half as loud)
+volume-multiplier: 1.0
+
+sounds:
+  # --- queue / joining a game
+  queue-join: ["CLICK:1.0:1.2"]
+  queue-leave: ["CLICK:1.0:0.8"]
+  # a match was found and you were put into it
+  match-found: ["ORB_PICKUP:1.0:1.0"]
+
+  # --- countdown
+  # once per second together with the title
+  countdown-tick: ["NOTE_STICKS:1.0:1.0"]
+  # the last seconds (3, 2, 1)
+  countdown-last: ["NOTE_STICKS:1.0:1.6"]
+  fight-start: ["NOTE_PLING:1.0:2.0"]
+
+  # --- kills (killer hears these)
+  kill: ["SUCCESSFUL_HIT:1.0:1.0", "ORB_PICKUP:1.0:1.9:2", "NOTE_PLING:0.8:2.0:5"]
+  # victim could not respawn (bed already destroyed)
+  final-kill: ["SUCCESSFUL_HIT:1.0:1.0", "LEVEL_UP:1.0:1.2:2", "NOTE_PLING:1.0:2.0:6", "NOTE_PLING:1.0:1.5:9"]
+  # the player who died
+  death: ["HURT_FLESH:1.0:0.8"]
+  respawn: ["ENDERMAN_TELEPORT:0.8:1.2"]
+
+  # --- beds
+  # the player who destroyed a bed (dragon death sound like Bedwars)
+  bed-break: ["ENDERDRAGON_DEATH:1.0:1.0"]
+  # every player of the team whose bed was destroyed
+  bed-destroyed: ["ENDERDRAGON_DEATH:1.0:1.0"]
+  # you tried to break your own bed
+  own-bed: ["VILLAGER_NO:1.0:1.0"]
+
+  # --- end of the match
+  victory: ["LEVEL_UP:1.0:1.0", "FIREWORK_LARGE_BLAST:1.0:1.0:6"]
+  defeat: ["WITHER_SPAWN:0.6:1.2"]
+  draw: ["NOTE_BASS:1.0:1.0"]
+
+  # --- blocks / protection
+  cannot-build: ["VILLAGER_NO:0.8:1.0"]
+  cannot-break: ["VILLAGER_NO:0.8:1.0"]
+
+  # --- spectating and menus
+  spectate-start: ["ENDERMAN_TELEPORT:0.8:1.0"]
+  gui-open: ["CHEST_OPEN:0.8:1.0"]
+  gui-click: ["CLICK:1.0:1.0"]

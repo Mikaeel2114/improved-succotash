@@ -1,0 +1,91 @@
+# ---------------------------------------------------------------------------
+# BedFight settings            (reload with /bedfight reload)
+#
+# When the plugin is updated, any NEW keys are added to this file automatically.
+# Your existing values are never overwritten or deleted.
+#
+# Sound lists use the format  "SOUND_NAME:volume:pitch:delayTicks"
+# (volume, pitch and delay are optional). Sound names are the Spigot 1.8.8
+# names, e.g. NOTE_STICKS, NOTE_PLING, ORB_PICKUP, LEVEL_UP, SUCCESSFUL_HIT.
+# An empty list [] disables that sound.
+# ---------------------------------------------------------------------------
+
+game:
+  # Frozen countdown before the match starts
+  countdown-seconds: 5
+  # Respawn delay while the bed is alive
+  respawn-delay-seconds: 5
+  # Damage immunity after respawning
+  respawn-protection-seconds: 3
+  # Seconds between the winner being decided and everyone being sent to the lobby
+  end-delay-seconds: 8
+  # Seconds after the last hit during which a death still counts as a kill
+  kill-credit-seconds: 10
+  # Take fall damage during matches?
+  fall-damage: false
+  # Matches that last longer end in a draw. 0 = no limit
+  time-limit-minutes: 0
+
+spectator:
+  # Allow /bedfight spec <player>
+  enabled: true
+  # Flying speed of spectators (0.1 = normal flight)
+  fly-speed: 0.1
+  # How many blocks outside the arena box a spectator may fly horizontally
+  boundary-padding: 8
+  # Hotbar compass that opens the player teleporter
+  teleporter-item: true
+  # Hotbar bed that leaves spectator mode
+  leave-item: true
+
+# Map blocks players are allowed to break. Spigot 1.8.8 names: end stone = ENDER_STONE,
+# planks = WOOD (END_STONE / OAK_PLANKS are accepted too).
+# Blocks players place themselves can always be broken. Everything else in the map is protected.
+breakable-blocks:
+  - ENDER_STONE
+  - WOOD
+  - WOOL
+  - STAINED_CLAY
+  - HARD_CLAY
+  - GLASS
+  - STAINED_GLASS
+  - OBSIDIAN
+  - LADDER
+
+# Blocks that DROP their item when a player breaks them (the item can be picked up again).
+# Blocks not listed here simply disappear without a drop. Same names as breakable-blocks.
+drop-blocks:
+  - WOOL
+  - WOOD
+  - ENDER_STONE
+  - STAINED_CLAY
+  - HARD_CLAY
+
+arena:
+  # Used when saving an arena (/bedfight save): the max build height (max Y of po1/po2) must be at least
+  # this many blocks above every bed, so bed defenses can be built. 0 = no check.
+  min-build-height-above-bed: 3
+
+# Built-in party system (/party, /p, /pc). No permission is needed to use it.
+party:
+  # Default and maximum party size (the leader changes the limit with /party limit <n>; max 18)
+  default-limit: 8
+  max-limit: 16
+  # Seconds an invite stays valid
+  invite-expire-seconds: 60
+  # Starting values of a NEW party (the leader changes them in /party setting)
+  default-open: false
+  default-all-invite: false
+  # Party chat format. %rank% is "[Leader] " / "[Mod] " / empty
+  chat-format: "&9Party &8> %rank%&f%player%&8: &7%message%"
+
+messages:
+  cannot-build: "&cYou cannot build here!"
+  cannot-break: "&cYou can only break blocks placed by players! (&7%block%&c)"
+
+private-match:
+  # Values the private match menu cycles through
+  respawn-delay-options: [3, 5, 8, 10]
+  time-limit-options: [0, 10, 15, 20]
+
+# All sounds are configured in voices.yml
