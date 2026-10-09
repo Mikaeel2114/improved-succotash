@@ -139,7 +139,7 @@
 /* 139 */     broadcast(party, String.valueOf(ChatColor.YELLOW) + String.valueOf(ChatColor.YELLOW) + actor.getName() + " invited " + String.valueOf(ChatColor.GRAY) + String.valueOf(ChatColor.YELLOW) + target.getName() + " to the party. They have " + String.valueOf(ChatColor.GRAY) + " seconds to accept.");
 /*     */     
 /* 141 */     sendInvite(target, actor, party);
-/* 142 */     Bukkit.getScheduler().runTaskLater((Plugin)this.plugin, () -> { Long until = fp.getInvites().get(tid); if (until != null && until.longValue() <= System.currentTimeMillis()) { fp.getInvites().remove(tid); if (!fp.has(tid) && this.byPlayer.get(fp.getLeader()) == fp) broadcast(fp, String.valueOf(ChatColor.GRAY) + "The invite for " + String.valueOf(ChatColor.GRAY) + String.valueOf(ChatColor.YELLOW) + name(tid) + " expired.");  }  }expireMs / 50L + 20L);
+/* 142 */     Bukkit.getScheduler().runTaskLater((Plugin)this.plugin, () -> { Long until = fp.getInvites().get(tid); if (until != null && until.longValue() <= System.currentTimeMillis()) { fp.getInvites().remove(tid); if (!fp.has(tid) && this.byPlayer.get(fp.getLeader()) == fp) broadcast(fp, String.valueOf(ChatColor.GRAY) + "The invite for " + String.valueOf(ChatColor.GRAY) + String.valueOf(ChatColor.YELLOW) + name(tid) + " expired.");  }  }, expireMs / 50L + 20L);
 /*     */ 
 /*     */ 
 /*     */ 

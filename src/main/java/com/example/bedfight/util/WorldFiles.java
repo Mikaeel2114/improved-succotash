@@ -7,6 +7,7 @@
 /*    */ import java.nio.file.SimpleFileVisitor;
 /*    */ import java.nio.file.StandardCopyOption;
 /*    */ import java.nio.file.attribute.BasicFileAttributes;
+/*     */ import java.nio.file.attribute.FileAttribute;
 /*    */ import java.util.Set;
 /*    */ 
 /*    */ public final class WorldFiles {

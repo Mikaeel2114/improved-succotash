@@ -54,49 +54,12 @@
 /*    */ 
 /*    */   
 /*    */   private static Object constant(Class<?> enumClass, String name) {
-/*    */     // Byte code:
-/*    */     //   0: aload_0
-/*    */     //   1: invokevirtual getEnumConstants : ()[Ljava/lang/Object;
-/*    */     //   4: astore_2
-/*    */     //   5: aload_2
-/*    */     //   6: arraylength
-/*    */     //   7: istore_3
-/*    */     //   8: iconst_0
-/*    */     //   9: istore #4
-/*    */     //   11: iload #4
-/*    */     //   13: iload_3
-/*    */     //   14: if_icmpge -> 47
-/*    */     //   17: aload_2
-/*    */     //   18: iload #4
-/*    */     //   20: aaload
-/*    */     //   21: astore #5
-/*    */     //   23: aload #5
-/*    */     //   25: checkcast java/lang/Enum
-/*    */     //   28: invokevirtual name : ()Ljava/lang/String;
-/*    */     //   31: aload_1
-/*    */     //   32: invokevirtual equals : (Ljava/lang/Object;)Z
-/*    */     //   35: ifeq -> 41
-/*    */     //   38: aload #5
-/*    */     //   40: areturn
-/*    */     //   41: iinc #4, 1
-/*    */     //   44: goto -> 11
-/*    */     //   47: aconst_null
-/*    */     //   48: areturn
-/*    */     // Line number table:
-/*    */     //   Java source line number -> byte code offset
-/*    */     //   #54	-> 0
-/*    */     //   #55	-> 23
-/*    */     //   #56	-> 38
-/*    */     //   #54	-> 41
-/*    */     //   #59	-> 47
-/*    */     // Local variable table:
-/*    */     //   start	length	slot	name	descriptor
-/*    */     //   23	18	5	o	Ljava/lang/Object;
-/*    */     //   0	49	0	enumClass	Ljava/lang/Class;
-/*    */     //   0	49	1	name	Ljava/lang/String;
-/*    */     // Local variable type table:
-/*    */     //   start	length	slot	name	signature
-/*    */     //   0	49	0	enumClass	Ljava/lang/Class<*>;
+    for (Object o : enumClass.getEnumConstants()) {
+      if (((Enum<?>) o).name().equals(name)) {
+        return o;
+      }
+    }
+    return null;
 /*    */   }
 /*    */ 
 /*    */ 

@@ -50,69 +50,9 @@
 /*     */ import org.bukkit.scheduler.BukkitTask;
 /*     */ 
 /*     */ public final class Match {
-/*  53 */   public enum State { PREPARING, COUNTDOWN, RUNNING, ENDING; } public static final class TeamView extends Record {
-/*     */     private final DyeColor color; private final boolean bedAlive; private final int alive; private final boolean mine;
-/*  55 */     public TeamView(DyeColor color, boolean bedAlive, int alive, boolean mine) { this.color = color; this.bedAlive = bedAlive; this.alive = alive; this.mine = mine; } public final String toString() { // Byte code:
-/*     */       //   0: aload_0
-/*     */       //   1: <illegal opcode> toString : (Lcom/example/bedfight/game/Match$TeamView;)Ljava/lang/String;
-/*     */       //   6: areturn
-/*     */       // Line number table:
-/*     */       //   Java source line number -> byte code offset
-/*     */       //   #55	-> 0
-/*     */       // Local variable table:
-/*     */       //   start	length	slot	name	descriptor
-/*     */       //   0	7	0	this	Lcom/example/bedfight/game/Match$TeamView; } public final int hashCode() { // Byte code:
-/*     */       //   0: aload_0
-/*     */       //   1: <illegal opcode> hashCode : (Lcom/example/bedfight/game/Match$TeamView;)I
-/*     */       //   6: ireturn
-/*     */       // Line number table:
-/*     */       //   Java source line number -> byte code offset
-/*     */       //   #55	-> 0
-/*     */       // Local variable table:
-/*     */       //   start	length	slot	name	descriptor
-/*     */       //   0	7	0	this	Lcom/example/bedfight/game/Match$TeamView; } public final boolean equals(Object o) { // Byte code:
-/*     */       //   0: aload_0
-/*     */       //   1: aload_1
-/*     */       //   2: <illegal opcode> equals : (Lcom/example/bedfight/game/Match$TeamView;Ljava/lang/Object;)Z
-/*     */       //   7: ireturn
-/*     */       // Line number table:
-/*     */       //   Java source line number -> byte code offset
-/*     */       //   #55	-> 0
-/*     */       // Local variable table:
-/*     */       //   start	length	slot	name	descriptor
-/*     */       //   0	8	0	this	Lcom/example/bedfight/game/Match$TeamView;
-/*  55 */       //   0	8	1	o	Ljava/lang/Object; } public DyeColor color() { return this.color; } public boolean bedAlive() { return this.bedAlive; } public int alive() { return this.alive; } public boolean mine() { return this.mine; }
+/*  53 */   public enum State { PREPARING, COUNTDOWN, RUNNING, ENDING; } public record TeamView(DyeColor color, boolean bedAlive, int alive, boolean mine) {
 /*     */   
-/*  57 */   } private static final class Damage extends Record { private final UUID by; private final long time; private Damage(UUID by, long time) { this.by = by; this.time = time; } public final String toString() { // Byte code:
-/*     */       //   0: aload_0
-/*     */       //   1: <illegal opcode> toString : (Lcom/example/bedfight/game/Match$Damage;)Ljava/lang/String;
-/*     */       //   6: areturn
-/*     */       // Line number table:
-/*     */       //   Java source line number -> byte code offset
-/*     */       //   #57	-> 0
-/*     */       // Local variable table:
-/*     */       //   start	length	slot	name	descriptor
-/*     */       //   0	7	0	this	Lcom/example/bedfight/game/Match$Damage; } public final int hashCode() { // Byte code:
-/*     */       //   0: aload_0
-/*     */       //   1: <illegal opcode> hashCode : (Lcom/example/bedfight/game/Match$Damage;)I
-/*     */       //   6: ireturn
-/*     */       // Line number table:
-/*     */       //   Java source line number -> byte code offset
-/*     */       //   #57	-> 0
-/*     */       // Local variable table:
-/*     */       //   start	length	slot	name	descriptor
-/*     */       //   0	7	0	this	Lcom/example/bedfight/game/Match$Damage; } public final boolean equals(Object o) { // Byte code:
-/*     */       //   0: aload_0
-/*     */       //   1: aload_1
-/*     */       //   2: <illegal opcode> equals : (Lcom/example/bedfight/game/Match$Damage;Ljava/lang/Object;)Z
-/*     */       //   7: ireturn
-/*     */       // Line number table:
-/*     */       //   Java source line number -> byte code offset
-/*     */       //   #57	-> 0
-/*     */       // Local variable table:
-/*     */       //   start	length	slot	name	descriptor
-/*     */       //   0	8	0	this	Lcom/example/bedfight/game/Match$Damage;
-/*  57 */       //   0	8	1	o	Ljava/lang/Object; } public UUID by() { return this.by; } public long time() { return this.time; }
+/*  57 */   } private record Damage(UUID by, long time) {
 /*     */      }
 /*     */   
 /*     */   private static final class TeamState { final DyeColor color;
@@ -259,7 +199,7 @@
 /*     */             Bukkit.getScheduler().runTask((Plugin)this.plugin, this::begin);
 /* 202 */           } catch (IOException ex) {
 /*     */             this.plugin.getLogger().log(Level.SEVERE, "Could not copy arena world " + String.valueOf(src), ex);
-/*     */             Bukkit.getScheduler().runTask((Plugin)this.plugin, ());
+/*     */             Bukkit.getScheduler().runTask((Plugin)this.plugin, () -> abort("Could not prepare the arena."));
 /*     */           } 
 /*     */         });
 /*     */   }

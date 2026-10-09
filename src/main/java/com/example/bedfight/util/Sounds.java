@@ -35,7 +35,7 @@
 /* 35 */       if (delay <= 0L) {
 /* 36 */         p.playSound(p.getLocation(), sound, volume, pitch); continue;
 /*    */       } 
-/* 38 */       Bukkit.getScheduler().runTaskLater((Plugin)plugin, () -> { if (p.isOnline()) p.playSound(p.getLocation(), sound, volume, pitch);  }delay);
+/* 38 */       Bukkit.getScheduler().runTaskLater((Plugin)plugin, () -> { if (p.isOnline()) p.playSound(p.getLocation(), sound, volume, pitch);  }, delay);
 /*    */     } 
 /*    */   }
 /*    */ 
