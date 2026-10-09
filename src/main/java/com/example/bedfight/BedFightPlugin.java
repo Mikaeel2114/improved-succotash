@@ -156,11 +156,28 @@
 /*     */   }
 /*     */   
 /*     */   public Location getLobby() {
-/* 159 */     World w = Bukkit.getWorld(getConfig().getString("lobby-world", ""));
-/* 160 */     if (w == null) {
-/* 161 */       w = Bukkit.getWorlds().get(0);
+/*     */     org.bukkit.configuration.ConfigurationSection sec = getConfig().getConfigurationSection("lobby");
+/*     */     if (sec != null && sec.contains("x")) {
+/*     */       World lw = Bukkit.getWorld(sec.getString("world", ""));
+/*     */       if (lw != null) {
+/*     */         return new Location(lw, sec.getDouble("x"), sec.getDouble("y"), sec.getDouble("z"), (float)sec.getDouble("yaw"), (float)sec.getDouble("pitch"));
+/*     */       }
 /*     */     }
-/* 163 */     return w.getSpawnLocation();
+/*     */     World w = Bukkit.getWorld(getConfig().getString("lobby-world", ""));
+/*     */     if (w == null) {
+/*     */       w = Bukkit.getWorlds().get(0);
+/*     */     }
+/*     */     return w.getSpawnLocation();
+/*     */   }
+/*     */   
+/*     */   public void setLobby(Location l) {
+/*     */     getConfig().set("lobby.world", l.getWorld().getName());
+/*     */     getConfig().set("lobby.x", Double.valueOf(l.getX()));
+/*     */     getConfig().set("lobby.y", Double.valueOf(l.getY()));
+/*     */     getConfig().set("lobby.z", Double.valueOf(l.getZ()));
+/*     */     getConfig().set("lobby.yaw", Float.valueOf(l.getYaw()));
+/*     */     getConfig().set("lobby.pitch", Float.valueOf(l.getPitch()));
+/*     */     saveConfig();
 /*     */   }
 /*     */   
 /* 166 */   public Settings getSettings() { return this.settings; }

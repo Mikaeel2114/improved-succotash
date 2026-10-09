@@ -3,3 +3,11 @@ default-mode: 1v1
 # World whose spawn is used as lobby after a match (empty = first loaded world)
 lobby-world: ""
 # NOTE: countdown, respawn, sounds, spectator and message options live in settings.yml
+# Set in-game with /bedfight setlobby (overrides lobby-world). Players go here after a match.
+# lobby:
+#   world: world
+#   x: 0.5
+#   y: 64.0
+#   z: 0.5
+#   yaw: 0.0
+#   pitch: 0.0

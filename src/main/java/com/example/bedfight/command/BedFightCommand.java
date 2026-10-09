@@ -29,7 +29,7 @@
 /*     */ import org.bukkit.entity.Player;
 /*     */ 
 /*     */ public final class BedFightCommand implements CommandExecutor, TabCompleter {
-/*  32 */   private static final List<String> ADMIN_SUBS = List.of(new String[] { "setuparena", "edit", "info", "po1", "po2", "setspawn", "createteam", "removeteam", "setteam", "setbed", "buildmode", "save", "reload" });
+/*  32 */   private static final List<String> ADMIN_SUBS = List.of(new String[] { "setuparena", "edit", "info", "po1", "po2", "setspawn", "createteam", "removeteam", "setteam", "setbed", "buildmode", "save", "reload", "setlobby" });
 /*     */   
 /*     */   private static final String ADMIN = "bedfight.admin";
 /*     */   
@@ -105,6 +105,11 @@
 /*     */       } 
 /*     */       
 /* 107 */       return true;
+/*     */     } 
+/*     */     if (sub.equals("setlobby")) {
+/*     */       this.plugin.setLobby(p.getLocation());
+/*     */       this.plugin.msg((CommandSender)p, String.valueOf(ChatColor.GREEN) + "Lobby set to your position. Players are sent here after a match ends.");
+/*     */       return true;
 /*     */     } 
 /* 109 */     if (sub.equals("buildmode")) {
 /* 110 */       if (arenas.toggleBuildMode(p)) {
